@@ -18,6 +18,17 @@
 #   The workflow reads this Markdown file and replaces all {{PLACEHOLDER}}
 #   tokens at runtime before passing the content to the release action.
 #
+# IMPORTANT - PS.Tweak.Tools is a building block of the WinTwin.Fusion
+# Framework, NOT a standalone module. It only works inside an existing
+# WinTwin.Fusion installation. The ZIP built by this workflow is therefore
+# NOT meant for standalone use - its only purpose is to let advanced users
+# apply an UNOFFICIAL, early update of this component inside an existing
+# WinTwin.Fusion installation, ahead of the official merge/release through
+# the WinTwin.Fusion repository (see the cross-repo sync section below).
+# Standalone WinTwin.Fusion tools (e.g. WTF.Console) get their own dedicated
+# repository and their own release pipeline - this notice does not apply
+# to them.
+#
 # Cross-repo release synchronization:
 #   After the GitHub Release has been published, this workflow is the
 #   TRIGGERING side of a cross-repo release-sync pipeline. It fires a
@@ -25,7 +36,8 @@
 #   WinTwin-Fusion/WinTwin.Fusion repository. That repository owns a
 #   companion workflow (sync-pstt-release.yml) which reacts to the event by
 #   creating a new branch and committing the updated PS.Tweak.Tools module
-#   files into its ".\PS.Tweak.Tools" subdirectory.
+#   files into its ".\PS.Tweak.Tools" subdirectory. This is the OFFICIAL
+#   update path - the sync branch is reviewed and merged manually.
 #
 # Required repository secret:
 #   CROSS_REPO_SYNC_TOKEN
@@ -208,7 +220,7 @@ jobs:
           python3 /tmp/render_template.py
           echo "body_file=$OUTPUT" >> $GITHUB_OUTPUT
 
-      - name: Create PS.Tweak.Tools release package
+      - name: Create PS.Tweak.Tools unofficial update package
         run: |
           ZIP_FILENAME="${{ steps.setup.outputs.zip_filename }}"
           DEST="release-temp/${{ env.temp_folder }}"

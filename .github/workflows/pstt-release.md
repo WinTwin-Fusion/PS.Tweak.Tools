@@ -13,6 +13,15 @@
        {{UNOFFICIAL_BANNER}} -> Empty string OR unofficial warning banner
        {{RELEASE_NOTES}}     -> Additional release notes or default placeholder
        {{SYNC_STATUS}}       -> Cross-repo sync result line (set by Step 7)
+
+     IMPORTANT - PS.Tweak.Tools is a building block of the WinTwin.Fusion
+     Framework, NOT a standalone module. The ZIP package built from this
+     release exists solely to allow advanced users to apply an unofficial,
+     early update of this component inside an EXISTING WinTwin.Fusion
+     installation, ahead of the official merge into the WinTwin.Fusion repo.
+     Standalone WinTwin.Fusion tools (e.g. WTF.Console) get their own
+     dedicated repository and their own release template - this notice does
+     NOT apply to them.
 =========================================================================== -->
 
 {{UNOFFICIAL_BANNER}}
@@ -26,39 +35,44 @@
 <br>
 
 ## ℹ️ System Requirements:
-- Windows 10 / Windows 11
+- Windows 11, Version 24H2 or 25H2
 - PowerShell 5.1 or higher
-- No administrator privileges required for standard usage
+- An existing **WinTwin.Fusion** installation (PS.Tweak.Tools cannot be used standalone)
 <br>
 
 ## 🪛 Installation / Usage:
 
-### 📂 Option A — Direct Import *(local, no installation required)*:
+> ⚠️ **Important:** PS.Tweak.Tools is **not a standalone module**. It is an integral
+> building block of the **WinTwin.Fusion Framework** and only functions correctly
+> when used together with an existing WinTwin.Fusion installation. Standalone
+> WinTwin.Fusion tools (e.g. `WTF.Console`) are published in their own dedicated
+> repositories and are **not** affected by this notice.
+
+### 📦 About this ZIP package:
+
+This release ZIP is **not** intended for manual, standalone usage. It exists
+solely to let advanced users apply an **unofficial, early update** of the
+PS.Tweak.Tools component inside an existing WinTwin.Fusion installation -
+before the corresponding change has been officially merged and released
+through the [WinTwin.Fusion repository]({{REPO_URL}}).
+
+Official, fully tested integrations of PS.Tweak.Tools are always delivered
+through the regular WinTwin.Fusion release channel via the automatic
+cross-repo synchronization described below.
+
+### 🔧 Manual (unofficial) update procedure:
+
 1. Download the ZIP archive from the link above.
 2. Extract the archive to a location of your choice.
-3. Open PowerShell and navigate to the extracted folder.
-4. Import the module directly for the current session:
-   ```powershell
-   Import-Module .\PS.Tweak.Tools\PS.Tweak.Tools.psm1
-   ```
-5. Refer to the included `README.md` for detailed usage instructions.
+3. Locate the `PS.Tweak.Tools` subdirectory inside your existing WinTwin.Fusion
+   installation folder (e.g. `C:\WinTwin.Fusion\PS.Tweak.Tools`).
+4. Replace the entire contents of that `PS.Tweak.Tools` subdirectory with the
+   files extracted in step 2.
+5. Restart WinTwin.Fusion (or reload the affected module/tool) to apply the update.
 
-### 🌍 Option B — Global Module Installation *(persistent, user-wide)*:
-1. Download and extract the ZIP archive.
-2. Determine your personal PowerShell module directory:
-   ```powershell
-   $env:PSModulePath -split ';'
-   ```
-3. Inside that `Modules` directory, create a new subfolder named exactly `PS.Tweak.Tools`.
-4. Copy all extracted files into that new subfolder.
-5. The module is now permanently available in every PowerShell session:
-   ```powershell
-   Import-Module PS.Tweak.Tools
-   ```
-6. To verify the installation:
-   ```powershell
-   Get-Module -ListAvailable PS.Tweak.Tools
-   ```
+> ⚠️ Using this unofficial update path is done **at your own risk**. It is only
+> meant for testing changes ahead of an official release. Always prefer the
+> official, tested integration delivered through the WinTwin.Fusion repository.
 <br>
 
 ## 🔄 Cross-Repo Synchronization:
