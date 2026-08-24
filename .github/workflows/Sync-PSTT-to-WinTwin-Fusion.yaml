@@ -168,7 +168,7 @@ jobs:
         with:
           repository: ${{ env.TARGET_REPOSITORY }}
           ref: ${{ env.TARGET_BASE_BRANCH }}
-          token: ${{ secrets.TOKEN_WINTWIN_FUSION_PR_PSTT }}
+          token: ${{ secrets.WINTWIN_FUSION_COMPONENT_SYNC }}
           path: framework
           fetch-depth: 0
 
@@ -572,7 +572,7 @@ jobs:
         if: steps.changes.outputs.has_changes == 'true'
         working-directory: framework
         env:
-          GH_TOKEN: ${{ secrets.TOKEN_WINTWIN_FUSION_PR_PSTT }}
+          GH_TOKEN: ${{ secrets.WINTWIN_FUSION_COMPONENT_SYNC }}
         run: |
           PR_TITLE="$(cat .sync_pr_title.txt)"
 
